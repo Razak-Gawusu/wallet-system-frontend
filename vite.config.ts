@@ -1,7 +1,7 @@
+import react from '@vitejs/plugin-react';
 import path from 'path';
 import eslintPlugin from 'vite-plugin-eslint';
 import svgrPlugin from 'vite-plugin-svgr';
-import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
