@@ -1,21 +1,33 @@
 import { type RouteObject } from 'react-router-dom';
 
-import { AuthLayout, HomeLayout } from '../layouts';
-import { Home } from '../pages';
+import { routes as authRoutes } from '../features/auth';
+import { LinkGuard } from '../features/auth/components';
+import { routes as dashRoutes } from '../features/dashboard';
+import { AuthLayout, DashboardLayout } from '../layouts';
+// import { Home } from '../pages';
 
 export const routes: RouteObject[] = [
   {
     path: 'auth/',
     element: <AuthLayout />,
-    children: [{ path: 'sign-up', element: <div>Sign up</div> }],
+    children: [...authRoutes],
   },
   {
     path: '/',
-    element: <HomeLayout />,
-    children: [
-      { path: '', element: <Home /> },
-      { path: 'history/', element: <div>History</div> },
-      { path: 'profile/', element: <div>Profile</div> },
-    ],
+    element: (
+      <LinkGuard>
+        <DashboardLayout />
+      </LinkGuard>
+    ),
+    children: [...dashRoutes],
   },
+  // {
+  //   path: '/',
+  //   element: <DashboardLayout />,
+  //   children: [
+  //     { path: '', element: <Home /> },
+  //     { path: 'history/', element: <div>History</div> },
+  //     { path: 'profile/', element: <div>Profile</div> },
+  //   ],
+  // },
 ];

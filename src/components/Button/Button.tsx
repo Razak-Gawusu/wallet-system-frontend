@@ -24,7 +24,7 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       {...props}
       className={cn(
-        'flex justify-center items-center gap-2 ',
+        'flex justify-center items-center gap-2 w-full',
         className,
         styles[`${variant}`],
       )}

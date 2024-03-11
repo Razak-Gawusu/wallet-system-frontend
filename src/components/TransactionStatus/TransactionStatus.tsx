@@ -7,13 +7,15 @@ interface StatusProps {
   leftIcon?: React.ReactNode;
   status: string;
   className?: string;
+  colorDisplay?: string;
   variant?: 'primary' | 'secondary';
 }
 
 export const TransactionStatus = ({
-  leftIcon,
+  // leftIcon,
   status,
   className,
+  // colorDisplay,
   variant = 'primary',
 }: StatusProps) => {
   return (
@@ -21,10 +23,18 @@ export const TransactionStatus = ({
       className={cn(
         'flex items-center text-xs py-1.5 px-2 gap-2 border rounded',
         className,
-        styles[`${variant}`],
+        styles[variant],
       )}
     >
-      {leftIcon}
+      <div className=" rounded-full bg-white w-3 h-3 p-[3px]">
+        <div
+          className={cn(
+            ' rounded-full h-[6px]',
+            variant === 'primary' ? 'bg-green-100' : 'bg-red-100',
+          )}
+        ></div>
+      </div>
+      {/* {leftIcon} */}
       {status}
     </div>
   );
