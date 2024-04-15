@@ -46,7 +46,7 @@ export function TransferFunds({ onClose }: TransferFundsProps) {
     }));
   }
   return (
-    <div className="w-[496px] h-lvh bg-white">
+    <div className="w-[496px] h-screen bg-white">
       <div className="flex justify-between items-center py-6 px-8">
         <p className="text-[24px] text-gray-800 font-semibold">Transfer</p>
         <button type="button" onClick={onClose}>

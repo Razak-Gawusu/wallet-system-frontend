@@ -24,7 +24,7 @@ export function Filter({
   handleDropdownFilterChange,
 }: FilterProps) {
   return (
-    <div className="w-[496px] h-lvh bg-white">
+    <div className="w-[496px] h-screen bg-white">
       <div className="flex justify-between items-center py-6 px-8">
         <p className="text-[24px] text-gray-800 font-semibold">Filter</p>
         <button type="button" onClick={onClose}>
@@ -42,7 +42,7 @@ export function Filter({
             name="transactionType"
           />
         </div>
-        <div className="flex">
+        <div className="flex gap-[24px]">
           <Input
             label="Start Date"
             type="date"

@@ -25,6 +25,7 @@
     padding: 8px;
     border-bottom: 1px solid #ddd;
   }
+
   .overlay {
     display: flex;
     justify-content: end;
@@ -36,7 +37,9 @@
     left: 0;
     right: 0;
     bottom: 0;
+    overflow: hidden;
   }
+
   .transfer {
     display: flex;
     height: 100vh;
