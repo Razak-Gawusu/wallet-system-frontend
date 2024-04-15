@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
+import moment from 'moment';
+
 import { FilterIcon } from '../../../../assets';
 import { Button, Search, TransactionStatus } from '../../../../components';
-import { useFilter, useTransactionHistory } from '../..';
+import { useFilter } from '../..';
 import { EmptyState, Filter, TableComponent2 } from '../../components';
 import { Modal } from '../../modal';
 
@@ -12,8 +14,9 @@ const columnObjects = [
     header: 'Transaction Type',
   },
   {
-    accessorKey: 'dateTime',
+    accessorKey: 'createdAt',
     header: 'Date',
+    cell: DisplayDate,
   },
   {
     accessorKey: 'status',
@@ -27,22 +30,21 @@ const columnObjects = [
 ];
 
 export function Transactions() {
-  const { data } = useTransactionHistory();
   const [isShowing, setIsShowing] = useState(false);
   const {
     filter,
     handleFilterChange,
     applyFilter,
     handleDropdownFilterChange,
+    isLoading,
+    data,
   } = useFilter();
 
   function toggle() {
     setIsShowing(!isShowing);
   }
 
-  const transaction = data?.transactions;
-
-  console.log('transaction', transaction);
+  console.log('transaction', data);
 
   // const { ndata } = useFilter();
   // console.log('filter', ndata);
@@ -62,10 +64,10 @@ export function Transactions() {
         </div>
       </div>
       <div>
-        {transaction?.length === 0 ? (
+        {data?.length === 0 ? (
           <EmptyState />
         ) : (
-          <TableComponent2 data={transaction ?? []} columns={columnObjects} />
+          <TableComponent2 data={data ?? []} columns={columnObjects} />
         )}
       </div>
       <Modal show={isShowing}>
@@ -74,6 +76,7 @@ export function Transactions() {
           handleFilterChange={handleFilterChange}
           filter={filter}
           applyFilter={applyFilter}
+          isLoading={isLoading}
           handleDropdownFilterChange={handleDropdownFilterChange}
         />
       </Modal>
@@ -87,4 +90,12 @@ function DisplayStatus({ getValue }: { getValue: () => any }) {
   const statusVariant = statusValue === 'Successful' ? 'primary' : 'secondary';
 
   return <TransactionStatus status={statusValue} variant={statusVariant} />;
+}
+
+function DisplayDate({ getValue }: { getValue: () => any }) {
+  const dateValue = getValue();
+  const dateTime = moment(dateValue).format('MMMM D, YYYY | LT');
+  // const statusVariant = statusValue === 'Successful' ? 'primary' : 'secondary';
+
+  return <div>{dateTime}</div>;
 }

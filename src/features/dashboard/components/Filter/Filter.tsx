@@ -8,6 +8,7 @@ import { RadioButton } from '../RadioButton';
 
 interface FilterProps {
   onClose: () => void;
+  isLoading: boolean;
   handleFilterChange: (...args: any) => void;
   filter: FilterType;
   applyFilter: () => void;
@@ -19,6 +20,7 @@ export function Filter({
   filter,
   handleFilterChange,
   applyFilter,
+  isLoading,
   handleDropdownFilterChange,
 }: FilterProps) {
   return (
@@ -72,7 +74,9 @@ export function Filter({
             />
           </div>
         </div>
-        <Button onClick={applyFilter}>Apply Search</Button>
+        <Button onClick={applyFilter} isLoading={isLoading}>
+          Apply Search
+        </Button>
       </div>
     </div>
   );
