@@ -5,19 +5,22 @@ import { cn } from '../../libs';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  id?: string;
   error?: string;
   rightIcon?: React.ReactNode;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, type, className, ...props }, ref) => {
+  ({ label, id, error, type, className, ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false);
     return (
-      <div className={cn('w-[384px]', className)}>
-        <label htmlFor={label}></label>
+      <div className={cn('w-full', className)}>
+        <label htmlFor={id} className="text-w-[14px] text-gray-g200">
+          {label}
+        </label>
         <div
           className={cn(
-            'w-full py-3 px-4 flex justify-between items-center gap-4 border rounded',
+            'w-full py-3 px-4 flex justify-between items-center gap-4 border rounded mt-2',
             {
               'border-red-600': error,
             },
@@ -25,12 +28,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         >
           <input
             type={showPassword ? 'text' : type}
-            className="border-none focus:outline-none"
+            className="border-none focus:outline-none w-full"
             {...props}
             ref={ref}
+            id={id}
           />
           {type === 'password' && (
-            <button onClick={() => setShowPassword((prev) => !prev)}>
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
               {showPassword ? <EyeIcon /> : <EyeOffIcon />}
             </button>
           )}

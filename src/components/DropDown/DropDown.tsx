@@ -8,7 +8,7 @@ interface TransactionProps {
   className?: string;
 }
 
-export const Transaction = ({
+export const DropDown = ({
   className,
   options,
   onSelect,
