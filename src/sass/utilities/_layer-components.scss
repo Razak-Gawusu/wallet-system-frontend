@@ -28,7 +28,7 @@
 
   .overlay {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     position: absolute;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);

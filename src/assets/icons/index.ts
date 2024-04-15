@@ -1,4 +1,4 @@
-import CloseIcon from './Close.svg';
+import CloseIcon from './close.svg';
 import DropIcon from './dropicon.svg';
 import EmptyStateIcon from './empty-state.svg';
 import EyeIcon from './eye.svg';
