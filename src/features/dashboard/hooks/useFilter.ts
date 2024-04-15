@@ -58,15 +58,8 @@ export function useFilter() {
     navigate(`${pathname}${applyQueryParams(filter)}`);
   }
 
-  React.useEffect(() => {}, [
-    startDate,
-    endDate,
-    transactionStatus,
-    transactionType,
-  ]);
-
   return {
-    ndata: data?.data.data ?? {},
+    data: data?.data.data ?? {},
     isLoading,
     refetch,
     filter,
